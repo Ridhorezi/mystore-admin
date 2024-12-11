@@ -1,29 +1,29 @@
 "use client";
 
+import { deleteProductType } from "@/actions/productTypeActions";
 import { DeleteIcon, EditIcon } from "@/components/icons";
-import { Button } from "@/components/ui/Button";
-import Link from "next/link";
-import { deleteUser } from "@/actions/userActions";
+import { Button } from "@/components/ui/button";
 import DeleteConfirmationModal from "@/components/ui/DeleteConfirmationModal";
+import Link from "next/link";
 import { useState } from "react";
 
-export default function UsersScreen({ users }) {
+export default function ProductTypeScreen({ productTypes }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState();
 
   const handleDelete = async () => {
-    await deleteUser(selectedId);
+    await deleteProductType(selectedId);
     setIsDeleteModalOpen(false);
-    setSelectedId(undefined);
+    setSelectedId(null);
   };
 
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="font-semibold text-3xl p-2"> User Management </h1>
+        <h1 className="font-semibold text-3xl p-2"> Product Type Management</h1>
         <button>
-          <Link href="/users/add" className="custom-primary-btn">
-            Add User
+          <Link href="/product-type/add" className="custom-primary-btn">
+            Add Product Type
           </Link>
         </button>
       </div>
@@ -35,26 +35,27 @@ export default function UsersScreen({ users }) {
           <thead className="border-y-2 border-gray-400">
             <tr>
               <th>No</th>
-              <th>User Name</th>
-              <th>User Type</th>
+              <th>Name</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody className="text-gray-700 font-medium text-lg text-center">
-            {users.map((user, key) => (
-              <tr key={user.id}>
+            {productTypes.map((productType, key) => (
+              <tr key={productType.id}>
                 <td>{key + 1}</td>
-                <td>{user.userName}</td>
-                <th>{user.userType}</th>
+                <td>{productType.name}</td>
                 <td className="flex items-center gap-x-3">
-                  <Link href={`/users/edit/${user.id}`} className="w-fit">
+                  <Link
+                    href={`/product-type/edit/${productType.id}`}
+                    className="w-fit"
+                  >
                     <EditIcon />
                   </Link>
                   <Button
                     className="bg-transparent p-0 px-2 border-none text-red-500"
                     onClick={() => {
                       setIsDeleteModalOpen(true);
-                      setSelectedId(user.id);
+                      setSelectedId(productType.id);
                     }}
                   >
                     <DeleteIcon className="size-6" />

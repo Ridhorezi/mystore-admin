@@ -87,7 +87,7 @@ export const EditIcon = () => {
   );
 };
 
-export const DeleteIcon = (className) => {
+export const DeleteIcon = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

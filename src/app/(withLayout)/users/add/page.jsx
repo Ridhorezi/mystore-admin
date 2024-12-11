@@ -1,5 +1,5 @@
 import AddUserScreen from "@/screens/users/add";
 
-export default function EditUserPage() {
+export default function AddUserPage() {
   return <AddUserScreen />;
 }
