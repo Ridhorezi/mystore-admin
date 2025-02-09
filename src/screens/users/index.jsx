@@ -4,7 +4,7 @@ import { DeleteIcon, EditIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { deleteUser } from "@/actions/userActions";
-import DeleteConfirmationModal from "@/components/ui/DeleteConfirmationModal";
+import DeleteConfirmationModal from "@/components/ui/deleteConfirmationModal";
 import { useState } from "react";
 
 export default function UsersScreen({ users }) {
@@ -14,7 +14,7 @@ export default function UsersScreen({ users }) {
   const handleDelete = async () => {
     await deleteUser(selectedId);
     setIsDeleteModalOpen(false);
-    setSelectedId(undefined);
+    setSelectedId(null);
   };
 
   return (
@@ -47,18 +47,20 @@ export default function UsersScreen({ users }) {
                 <td>{user.userName}</td>
                 <th>{user.userType}</th>
                 <td className="flex items-center gap-x-3">
-                  <Link href={`/users/edit/${user.id}`} className="w-fit">
-                    <EditIcon />
-                  </Link>
-                  <Button
-                    className="bg-transparent p-0 px-2 border-none text-red-500"
-                    onClick={() => {
-                      setIsDeleteModalOpen(true);
-                      setSelectedId(user.id);
-                    }}
-                  >
-                    <DeleteIcon className="size-6" />
-                  </Button>
+                  <div className="flex self-center gap-x-3">
+                    <Link href={`/users/edit/${user.id}`} className="w-fit">
+                      <EditIcon />
+                    </Link>
+                    <Button
+                      className="bg-transparent p-0 px-2 border-none text-red-500"
+                      onClick={() => {
+                        setIsDeleteModalOpen(true);
+                        setSelectedId(user.id);
+                      }}
+                    >
+                      <DeleteIcon className="size-6" />
+                    </Button>
+                  </div>
                 </td>
               </tr>
             ))}

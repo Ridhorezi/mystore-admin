@@ -3,7 +3,7 @@
 import { deleteProductType } from "@/actions/productTypeActions";
 import { DeleteIcon, EditIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import DeleteConfirmationModal from "@/components/ui/DeleteConfirmationModal";
+import DeleteConfirmationModal from "@/components/ui/deleteConfirmationModal";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -45,21 +45,23 @@ export default function ProductTypeScreen({ productTypes }) {
                 <td>{key + 1}</td>
                 <td>{productType.name}</td>
                 <td className="flex items-center gap-x-3">
-                  <Link
-                    href={`/product-type/edit/${productType.id}`}
-                    className="w-fit"
-                  >
-                    <EditIcon />
-                  </Link>
-                  <Button
-                    className="bg-transparent p-0 px-2 border-none text-red-500"
-                    onClick={() => {
-                      setIsDeleteModalOpen(true);
-                      setSelectedId(productType.id);
-                    }}
-                  >
-                    <DeleteIcon className="size-6" />
-                  </Button>
+                  <div className="flex self-center gap-x-3">
+                    <Link
+                      href={`/product-type/edit/${productType.id}`}
+                      className="w-fit"
+                    >
+                      <EditIcon />
+                    </Link>
+                    <Button
+                      className="bg-transparent p-0 px-2 border-none text-red-500"
+                      onClick={() => {
+                        setIsDeleteModalOpen(true);
+                        setSelectedId(productType.id);
+                      }}
+                    >
+                      <DeleteIcon className="size-6" />
+                    </Button>
+                  </div>
                 </td>
               </tr>
             ))}

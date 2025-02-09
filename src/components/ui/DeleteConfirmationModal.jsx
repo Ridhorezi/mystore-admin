@@ -33,7 +33,7 @@ const DeleteConfirmationModal = ({ setIsOpen, onCancel, handleConfirm }) => {
               Cancel
             </Button>
             <Button type="submit" onClick={handleConfirm}>
-              Confrim
+              Confirm
             </Button>
           </div>
         </div>

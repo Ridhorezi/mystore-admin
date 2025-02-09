@@ -4,7 +4,7 @@ export default async function ProductTypeManagement() {
   const productTypes = await getProductTypes();
   return (
     <>
-      <ProductTypeScreen productTypes={productTypes} />;
+      <ProductTypeScreen productTypes={productTypes} />
     </>
   );
 }
